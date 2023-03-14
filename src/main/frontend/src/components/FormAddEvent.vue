@@ -7,6 +7,7 @@ let titleModel = ref();
 let descriptionModel = ref();
 let dateModel  = ref();
 let capacityModel = ref();
+let musicStyleModel = ref();
 
 const $q = useQuasar();
 
@@ -19,7 +20,8 @@ const onSubmit = async () => {
       date_hour: dateModel.value,
       max_participants: parseInt(capacityModel.value),
       description: descriptionModel.value,
-      actual_participants: 200
+      actual_participants: 200,
+      style: musicStyleModel.value
     },
   })
     .then((res) =>
@@ -37,8 +39,28 @@ const onReset = () => {
   titleModel.value = "",
   descriptionModel.value = "",
   dateModel.value = "",
-  capacityModel.value = ""
+  capacityModel.value = "",
+  musicStyleModel.value = ""
 };
+
+const options = ['dance', 'pop', 'rock', 'latina', 'alternativa', 'hiphop', 'metal']
+const model = ref(null)
+
+
+const selectEvent = ({
+  setup () {
+    return {
+      model,
+      options: [
+        { label: 'dance', value: 'dance', icon: 'ruta_a_la_imagen1' },
+        { label: 'pop', value: 'pop', icon: 'ruta_a_la_imagen2' },
+        { label: 'rock 3', value: 'rock 3', icon: 'ruta_a_la_imagen3' },
+      ]
+    }
+  }
+})
+     
+
 </script>
 
 <template>
@@ -153,6 +175,29 @@ const onReset = () => {
             (val) => (val && val.length > 1) || 'This field is required',
           ]"
         />
+        <!-- Select -->
+        <q-select 
+        rounded standout 
+        v-model="model" 
+        :options="options" 
+        label="Select an event"
+        bg-color="red"
+        label-color="white"
+        :input-style="{ color: 'white', fontSize: '1.7em'}"
+        
+         />
+         
+         <!-- <q-select v-model="selected" :options="opciones">
+  <template v-slot:option="{ opt }">
+    <div class="q-item q-item-type-thumbnail q-align-center">
+      <q-item-section>
+        <q-img :src="opt.icon" width="20" height="20" />
+      </q-item-section>
+      <q-item-section>{{ opt.label }}</q-item-section>
+    </div>
+  </template>
+</q-select> -->
+
 
         <q-btn
             label="New Here?"

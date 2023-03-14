@@ -1,11 +1,21 @@
 <script setup>
 import { ref, defineProps, reactive } from "vue";
+import axios from "axios";
+
 const selected = ref([]);
 
 const props = defineProps({
   event: {
     type: Object,
-  },
+  }
+  // el: '#imagenes',
+  // data: {
+  //   // checkedNames: []
+  //   return:
+  //      [
+  //       { url: "https://cdn.quasar.dev/img/avatar.png" }
+  //     ]
+  // }
 });
 
 const columns = [
@@ -17,6 +27,15 @@ const columns = [
     align: "center",
     sortable: true,
   },
+  { name: "MusicStyle", align: "left", label: "Music Style", field: "musicStyle" },
+  // {
+  //   name: "rows",
+  //   required: true,
+  //   label: "rows",
+  //   field: "rows",
+  //   align: "center",
+  //   sortable: true,
+  // },
   {
     name: "Description",
     align: "center",
@@ -39,19 +58,38 @@ const columns = [
     sortable: true,
   },
   { name: "Actions", align: "left", label: "Actions", field: "Actions" },
+  
 ];
 
 function getSelectedString(rows) {
   return selected.value.length === 0
-    ? ""
-    : `${selected.value.length} record${
-        selected.value.length > 1 ? "s" : ""
-      } selected of ${rows}`;
+  ? ""
+  : `${selected.value.length} record${
+    selected.value.length > 1 ? "s" : ""
+  } selected of ${rows}`;
+};
+
+const deleteEventRow = async (props, rows) =>  {
+
+    //   // try {
+    //   //   axios
+    //   //     .delete("http://localhost:9000/api/events/" + props.id)
+    //   //     .then((res) => {
+    //   //       const index = rows.value.findIndex((row) => row.id === props.id);
+    //   //       rows.value.splice(index, 1);
+    // });
+    console.log(props);
+        // } catch (err) {
+        //   console.log(err);
+        // }
 }
+
+
 </script>
 
 <template>
   <div class="list q-pa-md">
+  <div id="example-3">
     <q-table
       class="bg-grey-4"
       :rows="props.event"
@@ -61,8 +99,17 @@ function getSelectedString(rows) {
       selection="multiple"
       v-model:selected="selected"
     >
-      <!-- <template #body-cell-imagen="{ rows }">
-        <q-img :src="rows" />
+
+    <template #body-cell-#body-cell-MusicStyle>
+        <q-td align="center">
+    
+            <q-img src="http://localhost:8080/rock.png"></q-img>
+          
+        </q-td>
+      </template>
+
+      <!-- <template #body-cell-rows>
+        <q-img src="http://localhost:8080/rock.png" />
       </template> -->
 
       <template #body-cell-Actions>
@@ -74,7 +121,7 @@ function getSelectedString(rows) {
             label="Edit"
             class="q-mr-md"
           />
-          <q-btn push color="red" label="delete" />
+          <q-btn push color="red" label="delete" @click="deleteEventRow(props.event)" />
           <!-- <q-btn push color="red" text-color="primary" label="add" /> -->
         </q-td>
       </template>
@@ -88,6 +135,7 @@ function getSelectedString(rows) {
       </template>
     </q-table>
   </div>
+</div>
 </template>
 <style lang="scss">
 .q-pa-md {

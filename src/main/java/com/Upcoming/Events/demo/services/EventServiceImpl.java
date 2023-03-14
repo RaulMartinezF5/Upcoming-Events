@@ -1,4 +1,4 @@
-package com.upcoming.events.demo.services;
+package com.Upcoming.Events.demo.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import com.upcoming.events.demo.models.Event;
-import com.upcoming.events.demo.repositories.EventRepository;
+import com.Upcoming.Events.demo.models.Event;
+import com.Upcoming.Events.demo.repositories.EventRepository;
 
 @Service
 public class EventServiceImpl implements BaseService<Event>{
@@ -35,6 +35,9 @@ public class EventServiceImpl implements BaseService<Event>{
     @Override
     @Transactional
     public Event save(Event event) {
+        if (event.getStyle() == "rock")  {
+            event.setStyle("rock.png");
+        }
         return eventRepository.save(event);
     }
 

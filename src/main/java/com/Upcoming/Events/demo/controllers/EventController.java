@@ -1,4 +1,4 @@
-package com.upcoming.events.demo.controllers;
+package com.Upcoming.Events.demo.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.upcoming.events.demo.models.Event;
-import com.upcoming.events.demo.services.EventServiceImpl;
+import com.Upcoming.Events.demo.models.Event;
+import com.Upcoming.Events.demo.services.EventServiceImpl;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
@@ -56,7 +56,7 @@ public ResponseEntity<?> read(@PathVariable Long id){
     event.get().setDate_hour(eventDetails.getDate_hour());
     event.get().setMax_participants(eventDetails.getMax_participants());
     event.get().setDescription(eventDetails.getDescription());
-    // event.get().setId_image(eventDetails.getId_image());
+    event.get().setMusicStyle(eventDetails.getMusicStyle());
     event.get().setActual_participants(eventDetails.getActual_participants());
 
     return ResponseEntity.status(HttpStatus.CREATED).body(eventService.save(event.get()));

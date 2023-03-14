@@ -1,13 +1,15 @@
-package com.upcoming.events.demo.models;
+package com.Upcoming.Events.demo.models;
+
 
 import java.sql.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+
 
 @Entity
 @Table(name = "eventos")
@@ -30,8 +32,8 @@ public class Event {
     @Column (name = "description")
     private String description;
 
-    // @Column (name = "id_image")
-    // private String id_image;
+    @Column (name = "style")
+    private String style;
 
     @Column (name = "actual_participants")
     private int actual_participants;
@@ -39,19 +41,11 @@ public class Event {
     public Event() {
     }
 
-    public Event(String title, Date date_hour, int max_participants, String description,
-            int actual_participants) {
-        this.title = title;
-        this.date_hour = date_hour;
-        this.max_participants = max_participants;
-        this.description = description;
-        // this.id_image = id_image;
-        this.actual_participants = actual_participants;
-    }
-
     public long getId() {
         return id;
     }
+
+ 
 
     public String getTitle() {
         return title;
@@ -85,13 +79,13 @@ public class Event {
         this.description = description;
     }
 
-    // public String getId_image() {
-    //     return id_image;
-    // }
+    public String getStyle() {
+        return style;
+    }
 
-    // public void setId_image(String id_image) {
-    //     this.id_image = id_image;
-    // }
+    public void setStyle(String style) {
+        this.style = style;
+    }
 
     public int getActual_participants() {
         return actual_participants;
@@ -100,6 +94,10 @@ public class Event {
     public void setActual_participants(int actual_participants) {
         this.actual_participants = actual_participants;
     }
+
+  
+
+   
 
     
 }
