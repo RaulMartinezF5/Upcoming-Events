@@ -1,6 +1,5 @@
 package com.Upcoming.Events.demo.models;
 
-
 import java.sql.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,33 +8,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-
-
 @Entity
 @Table(name = "eventos")
-
 public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column 
+    @Column
     private long id;
 
-    @Column (name = "title")
+    @Column(name = "title")
     private String title;
 
-    @Column (name = "date_hour")
+    @Column(name = "date_hour")
     private Date date_hour;
 
-    @Column (name = "max_participants")
+    @Column(name = "max_participants")
     private int max_participants;
 
-    @Column (name = "description")
+    @Column(name = "description")
     private String description;
 
-    @Column (name = "style")
+    @Column(name = "style")
     private String style;
 
-    @Column (name = "actual_participants")
+    @Column(name = "actual_participants")
     private int actual_participants;
 
     public Event() {
@@ -45,7 +41,16 @@ public class Event {
         return id;
     }
 
- 
+    public Event(long id, String title, Date date_hour, int max_participants, String description, String style,
+            int actual_participants) {
+        this.id = id;
+        this.title = title;
+        this.date_hour = date_hour;
+        this.max_participants = max_participants;
+        this.description = description;
+        this.style = style;
+        this.actual_participants = actual_participants;
+    }
 
     public String getTitle() {
         return title;
@@ -95,9 +100,4 @@ public class Event {
         this.actual_participants = actual_participants;
     }
 
-  
-
-   
-
-    
 }
